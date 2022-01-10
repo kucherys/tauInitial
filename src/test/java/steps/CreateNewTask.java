@@ -15,7 +15,9 @@ public class CreateNewTask extends TestBase {
 
     @Given("Click Add new Task")
     public void clickAddNewTask() throws MalformedURLException {
-        Android_setUp();
+//        Android_setUp();
+        iOS_setUp();
+        System.out.println("IOS TESTS RUN IN CUCUMBER");
         tasksListPage = new TasksListPage(driver);
         createTaskPage = new CreateTaskPage(driver);
         tasksListPage.clickAddTaskBtn();

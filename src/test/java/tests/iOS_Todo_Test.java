@@ -24,6 +24,7 @@ public class iOS_Todo_Test extends TestBase {
     @Test(dataProvider = "tasks data")
     public void test_add_task(String taskName, String TaskDesc) throws MalformedURLException {
         iOS_setUp();
+        System.out.println("IOS TESTS RUN IN TESTNG");
         tasksListPage = new TasksListPage(driver);
         createTaskPage = new CreateTaskPage(driver);
         tasksListPage.clickAddTaskBtn();

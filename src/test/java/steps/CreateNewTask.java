@@ -2,6 +2,7 @@ package steps;
 
 import PageObjects.CreateTaskPage;
 import PageObjects.TasksListPage;
+import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,12 +16,18 @@ public class CreateNewTask extends TestBase {
 
     @Given("Click Add new Task")
     public void clickAddNewTask() throws MalformedURLException {
+        System.out.println("TEST IOS TESTS RUNNING IN CUCUMBER");
 //        Android_setUp();
+//        startServer();
         iOS_setUp();
-        System.out.println("IOS TESTS RUN IN CUCUMBER");
         tasksListPage = new TasksListPage(driver);
         createTaskPage = new CreateTaskPage(driver);
         tasksListPage.clickAddTaskBtn();
+    }
+
+    @Given("Print task number {string}")
+    public void printTask1(String task) throws MalformedURLException {
+        System.out.println("IOS TESTS CUCUMBER :" + task);
     }
 
     @Given("Enter TaskName")
@@ -42,5 +49,11 @@ public class CreateNewTask extends TestBase {
     public void taskAddedSuccessfully() {
         driver.hideKeyboard();
         tearDown();
+    }
+
+    @After
+    public void stopAppiumServer(){
+        System.out.println("Stop appium server form INITIAL STEPS CLASS");
+        service.stop();
     }
 }

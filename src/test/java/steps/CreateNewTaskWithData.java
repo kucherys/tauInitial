@@ -21,6 +21,11 @@ public class CreateNewTaskWithData extends TestBase {
         tasksListPage.clickAddTaskBtn();
     }
 
+    @Given("Print another task number {string}")
+    public void printTask2(String task) throws MalformedURLException {
+        System.out.println("IOS TESTS CUCUMBER :" + task);
+    }
+
     @Given("Enter {string} and {string}")
     public void enterAnd(String taskName, String taskDesc) {
         createTaskPage.enterTaskName(taskName);

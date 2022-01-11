@@ -49,11 +49,13 @@ public class CreateNewTask extends TestBase {
     public void taskAddedSuccessfully() {
         driver.hideKeyboard();
         tearDown();
+        System.out.println("Stop appium server form INITIAL STEPS CLASS");
+//        service.stop();
     }
 
-    @After
-    public void stopAppiumServer(){
-        System.out.println("Stop appium server form INITIAL STEPS CLASS");
-        service.stop();
-    }
+//    @After
+//    public void stopAppiumServer(){
+//        System.out.println("Stop appium server form INITIAL STEPS CLASS");
+//        service.stop();
+//    }
 }

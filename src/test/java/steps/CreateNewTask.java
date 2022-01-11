@@ -20,6 +20,7 @@ public class CreateNewTask extends TestBase {
 //        Android_setUp();
 //        startServer();
         iOS_setUp();
+        System.out.println("IOS EMULATOR STARTED");
         tasksListPage = new TasksListPage(driver);
         createTaskPage = new CreateTaskPage(driver);
         tasksListPage.clickAddTaskBtn();
@@ -43,13 +44,14 @@ public class CreateNewTask extends TestBase {
     @When("Click Save")
     public void clickSave() {
         createTaskPage.clickSaveBtn();
+        System.out.println("CLICK SAVE");
     }
 
     @Then("Task added successfully")
     public void taskAddedSuccessfully() {
         driver.hideKeyboard();
         tearDown();
-        System.out.println("Stop appium server form INITIAL STEPS CLASS");
+        System.out.println("STOP APPIUM SERVER INITIAL STEPS CLASS");
 //        service.stop();
     }
 

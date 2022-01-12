@@ -1,3 +1,4 @@
+PageObjects/LaunchPage.class
 PageObjects/PageBase.class
 PageObjects/CreateTaskPage.class
 PageObjects/TasksListPage.class

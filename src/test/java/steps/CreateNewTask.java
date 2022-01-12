@@ -18,7 +18,7 @@ public class CreateNewTask extends TestBase {
     public void clickAddNewTask() throws MalformedURLException {
         System.out.println("TEST IOS TESTS RUNNING IN CUCUMBER");
 //        Android_setUp();
-        startServer();
+//        startServer();
         iOS_setUp();
         System.out.println("IOS EMULATOR STARTED");
         tasksListPage = new TasksListPage(driver);
@@ -52,7 +52,7 @@ public class CreateNewTask extends TestBase {
         driver.hideKeyboard();
         tearDown();
         System.out.println("STOP APPIUM SERVER INITIAL STEPS CLASS");
-        service.stop();
+//        service.stop();
     }
 
 //    @After

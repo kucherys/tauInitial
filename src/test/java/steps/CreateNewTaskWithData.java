@@ -14,7 +14,7 @@ public class CreateNewTaskWithData extends TestBase {
     TasksListPage tasksListPage;
 
     @Given("Click add new Task")
-    public void clickAddNewTask() throws MalformedURLException {
+    public void clickAddNewTaskAndroid() throws MalformedURLException {
         Android_setUp();
         tasksListPage = new TasksListPage(driver);
         createTaskPage = new CreateTaskPage(driver);
@@ -33,7 +33,7 @@ public class CreateNewTaskWithData extends TestBase {
     }
 
     @Then("Task Added Successfully")
-    public void taskAddedSuccessfully() {
+    public void taskAddedSuccessfullyAndroid() {
         driver.hideKeyboard();
         tearDown();
     }

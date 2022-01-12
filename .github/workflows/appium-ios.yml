@@ -12,6 +12,10 @@ jobs:
 
     runs-on: macos-latest # the machine type
 #    runs-on: macos-10.15
+    strategy: # we are using strategy if we need to run on parallel with different devices and version
+      matrix:
+        api-level: [ 27 ] #Google api level for example [25,23,28]
+        target: [ default ]
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
@@ -22,7 +26,8 @@ jobs:
       with:
        node-version: '10.16.3'
     - run: |
-            npm install -g appium@v1.20.2
+            npm install -g appium@v1.22.1
+#            npm install -g appium@v1.20.2
             appium -v
             appium &>/dev/null &
             mvn clean test -Dcucumber.options="--tags @landIOS"

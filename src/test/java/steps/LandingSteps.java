@@ -86,9 +86,9 @@ public class LandingSteps extends TestBase {
 
     }
 
-    @After
-    public void stopAppiumServer(){
-        System.out.println("Stop appium server form INITIAL STEPS CLASS");
-        service.stop();
-    }
+//    @After
+//    public void stopAppiumServer(){
+//        System.out.println("Stop appium server form INITIAL STEPS CLASS");
+//        service.stop();
+//    }
 }

@@ -1,4 +1,4 @@
 runner/TestRunner.class
-tests/TestBase.class
 steps/CreateNewTask.class
 steps/CreateNewTaskWithData.class
+tests/TestBase.class

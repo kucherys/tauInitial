@@ -62,7 +62,7 @@ public class TestBase extends AbstractTestNGCucumberTests {
         capabilities.setCapability("wdaStartupRetries", "4");
         capabilities.setCapability("iosInstallPause","8000" );
         capabilities.setCapability("wdaStartupRetryInterval", "20000");
-        driver = new IOSDriver<>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+        driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
     }
 
     public static void tearDown() {

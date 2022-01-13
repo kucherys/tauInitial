@@ -10,7 +10,7 @@ Feature: Create New Task
   @testIOS
   Scenario: The user can add new task again
     Given Click Add new Task
-    Given Print task number "REAL IOS APP IS RUNNING"
+    Given Print task number "EXPERIMENTAL IOS APP IS RUNNING"
     Given Enter TaskName
     Given Enter TaskDesc
     When Click Save

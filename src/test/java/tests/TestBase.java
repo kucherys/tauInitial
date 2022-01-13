@@ -47,7 +47,7 @@ public class TestBase extends AbstractTestNGCucumberTests {
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("app",
                 System.getProperty("user.dir") + "/apps/ToDo.apk");
-        driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+        driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
     }
 
     public void iOS_setUp() throws MalformedURLException {
@@ -59,7 +59,10 @@ public class TestBase extends AbstractTestNGCucumberTests {
         capabilities.setCapability("showXcodeLog",true);
         capabilities.setCapability("app",
                 System.getProperty("user.dir") + "/apps/DailyCheck.zip");
-        driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
+        capabilities.setCapability("wdaStartupRetries", "4");
+        capabilities.setCapability("iosInstallPause","8000" );
+        capabilities.setCapability("wdaStartupRetryInterval", "20000");
+        driver = new IOSDriver<>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
     }
 
     public static void tearDown() {

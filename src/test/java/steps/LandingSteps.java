@@ -26,8 +26,8 @@ public class LandingSteps extends TestBase {
         System.out.println("TEST " + appType + " TESTS RUNNING IN CUCUMBER");
 //        Android_setUp();
 //        startServer();
-//        iOS_setUp();
-        iOS_setUpDigibank();
+        iOS_setUp();
+//        iOS_setUpDigibank();
         System.out.println(appType + " EMULATOR STARTED");
         iosLaunchPage = new LaunchPage(driver);
     }

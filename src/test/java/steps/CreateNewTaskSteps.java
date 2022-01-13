@@ -2,7 +2,6 @@ package steps;
 
 import PageObjects.CreateTaskPage;
 import PageObjects.TasksListPage;
-import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -10,7 +9,7 @@ import tests.TestBase;
 
 import java.net.MalformedURLException;
 
-public class CreateNewTask extends TestBase {
+public class CreateNewTaskSteps extends TestBase {
     CreateTaskPage createTaskPage;
     TasksListPage tasksListPage;
 
@@ -18,7 +17,7 @@ public class CreateNewTask extends TestBase {
     public void clickAddNewTask() throws MalformedURLException {
         System.out.println("TEST IOS TESTS RUNNING IN CUCUMBER");
 //        Android_setUp();
-//        startServer();
+        startServer();
         iOS_setUp();
         System.out.println("IOS EMULATOR STARTED");
         tasksListPage = new TasksListPage(driver);
@@ -38,7 +37,7 @@ public class CreateNewTask extends TestBase {
 
     @Given("Enter TaskDesc")
     public void enterTaskDesc() {
-        createTaskPage.enterTaskDesc("Desc 1");
+        createTaskPage.enterTaskDesc("Desc 2");
     }
 
     @When("Click Save")
@@ -52,7 +51,7 @@ public class CreateNewTask extends TestBase {
         driver.hideKeyboard();
         tearDown();
         System.out.println("STOP APPIUM SERVER INITIAL STEPS CLASS");
-//        service.stop();
+        service.stop();
     }
 
 //    @After

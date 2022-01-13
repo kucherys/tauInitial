@@ -59,14 +59,26 @@ public class TestBase extends AbstractTestNGCucumberTests {
     public void iOS_setUp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "iOS");
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "15.2");
         capabilities.setCapability("deviceName", "iPhone X");
-//        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 12");
         capabilities.setCapability("automationName","XCUITest");
         capabilities.setCapability("isHeadless",true);
         capabilities.setCapability("showXcodeLog",true);
-//        capabilities.setCapability("app",
-//                System.getProperty("user.dir") + "/apps/DailyCheck.zip");
+        capabilities.setCapability("app",
+                System.getProperty("user.dir") + "/apps/DailyCheck.zip");
+        capabilities.setCapability("wdaStartupRetries", "4");
+        capabilities.setCapability("iosInstallPause","8000" );
+        capabilities.setCapability("wdaStartupRetryInterval", "20000");
+        driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
+    }
+
+    public void iOS_setUpRyse() throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "15.2");
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 12");
+        capabilities.setCapability("automationName","XCUITest");
+        capabilities.setCapability("isHeadless",true);
+        capabilities.setCapability("showXcodeLog",true);
         capabilities.setCapability("app",
                 System.getProperty("user.dir") + "/apps/iOSApp/Digibank.app");
         capabilities.setCapability("wdaStartupRetries", "4");

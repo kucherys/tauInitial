@@ -76,8 +76,8 @@ public class TestBase extends AbstractTestNGCucumberTests {
     public void iOS_setUpDigibank () throws IOException, InterruptedException {
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability("platformName", "iOS");
-//        cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "15.2");
-        cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "14.3");
+        cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "15.2");
+//        cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "14.3");
         cap.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 12");
         cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
         cap.setCapability("isHeadless",true);

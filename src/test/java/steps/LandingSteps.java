@@ -25,7 +25,7 @@ public class LandingSteps extends TestBase {
 //        setupClassGlobal(appType);
         System.out.println("TEST " + appType + " TESTS RUNNING IN CUCUMBER");
 //        Android_setUp();
-        startServer();
+//        startServer();
         iOS_setUp();
 //        iOS_setUpDigibank();
         System.out.println(appType + " EMULATOR STARTED");
@@ -70,7 +70,7 @@ public class LandingSteps extends TestBase {
         System.out.println("STOP APPIUM SERVER INITIAL STEPS CLASS");
 
 
-        service.stop();
+//        service.stop();
 
     }
 

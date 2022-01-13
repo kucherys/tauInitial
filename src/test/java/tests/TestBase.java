@@ -65,6 +65,9 @@ public class TestBase extends AbstractTestNGCucumberTests {
         capabilities.setCapability("showXcodeLog",true);
         capabilities.setCapability("app",
                 System.getProperty("user.dir") + "/apps/DailyCheck.zip");
+        capabilities.setCapability("wdaStartupRetries", "4");
+        capabilities.setCapability("iosInstallPause","8000" );
+        capabilities.setCapability("wdaStartupRetryInterval", "20000");
         driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
     }
 
@@ -80,6 +83,9 @@ public class TestBase extends AbstractTestNGCucumberTests {
 //        cap.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
         cap.setCapability("app",
                 System.getProperty("user.dir") + "/apps/iOSApp/Digibank.app");
+        cap.setCapability("wdaStartupRetries", "4");
+        cap.setCapability("iosInstallPause","8000" );
+        cap.setCapability("wdaStartupRetryInterval", "20000");
         driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), cap);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 

@@ -47,7 +47,7 @@ public class TestBase extends AbstractTestNGCucumberTests {
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("app",
                 System.getProperty("user.dir") + "/apps/ToDo.apk");
-        driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
+        driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
     }
 
     public void iOS_setUp() throws MalformedURLException {

@@ -79,8 +79,10 @@ public class TestBase extends AbstractTestNGCucumberTests {
         capabilities.setCapability("automationName","XCUITest");
         capabilities.setCapability("isHeadless",true);
         capabilities.setCapability("showXcodeLog",true);
+//        capabilities.setCapability("app",
+//                System.getProperty("user.dir") + "/apps/iOSApp/Digibank.app");
         capabilities.setCapability("app",
-                System.getProperty("user.dir") + "/apps/iOSApp/Digibank.app");
+                System.getProperty("user.dir") + "/apps/DailyCheck.zip");
         capabilities.setCapability("wdaStartupRetries", "4");
         capabilities.setCapability("iosInstallPause","8000" );
         capabilities.setCapability("wdaStartupRetryInterval", "20000");

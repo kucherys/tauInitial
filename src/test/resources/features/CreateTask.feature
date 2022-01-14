@@ -10,7 +10,7 @@ Feature: Create New Task
   @testIOS
   Scenario: The user can add new task again
     Given Click Add new Task
-    Given Print task number "TASK2 RERUN CUCUMBER EXPEREMENTAL WITH ADDED CAPABILITIES"
+    Given Print task number "EXPEREMENTAL app WITH ADDED CAPABILITIES"
     Given Enter TaskName
     Given Enter TaskDesc
     When Click Save

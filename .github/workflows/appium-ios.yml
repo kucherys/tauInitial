@@ -8,6 +8,7 @@ on:
     branches:
       - main
       - cucumberRun3
+      - exp
 
 jobs:
   build:

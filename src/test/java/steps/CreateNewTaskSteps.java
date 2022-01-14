@@ -17,7 +17,7 @@ public class CreateNewTaskSteps extends TestBase {
     public void clickAddNewTask() throws MalformedURLException {
         System.out.println("IOS TESTS RUNNING IN CUCUMBER");
 //        Android_setUp();
-        startServer();
+//        startServer();
 //        iOS_setUp();
         iOS_setUpRyse();
         System.out.println("IOS EMULATOR STARTED");
@@ -52,7 +52,7 @@ public class CreateNewTaskSteps extends TestBase {
         driver.hideKeyboard();
         tearDown();
         System.out.println("STOP APPIUM SERVER INITIAL STEPS CLASS");
-        service.stop();
+//        service.stop();
     }
 
 //    @After

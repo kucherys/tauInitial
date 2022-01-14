@@ -28,7 +28,7 @@ public class CreateNewTask extends TestBase {
 
     @Given("Print task number {string}")
     public void printTask1(String task) throws MalformedURLException {
-        System.out.println("EXP app TESTS CUCUMBER :" + task);
+        System.out.println("RUN AGAIN :" + task);
     }
 
     @Given("Enter TaskName")

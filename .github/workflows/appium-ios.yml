@@ -30,6 +30,8 @@ jobs:
           appium -v
           appium &>/dev/null &
       - name: Run Appium IOS Tests
-      - run: |
-          mvn clean test -Dcucumber.options="--tags @landIOS"
+      - uses: actions/setup-node@v2
+      - with:
+          node-version: '14.18.0'
+      - run: mvn clean test -Dcucumber.options="--tags @landIOS"
 

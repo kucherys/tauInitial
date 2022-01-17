@@ -18,7 +18,7 @@ public class CreateNewTaskSteps extends TestBase {
     @Given("Appium server with {string} application is running")
     public void setUp(String appType) throws MalformedURLException {
         System.out.println(appType + " TESTS RUNNING IN CUCUMBER");
-        startServer();
+//        startServer();
         if (appType.equals("Android")) {
             Android_setUp();
         } else if (appType.equals("iOS")) {
@@ -60,7 +60,7 @@ public class CreateNewTaskSteps extends TestBase {
         driver.hideKeyboard();
         tearDown();
         System.out.println("STOP APPIUM SERVER INITIAL STEPS CLASS");
-        service.stop();
+//        service.stop();
     }
 
 

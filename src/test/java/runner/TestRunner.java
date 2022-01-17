@@ -3,9 +3,9 @@ package runner;
 import io.cucumber.testng.CucumberOptions;
 import tests.TestBase;
 
-@CucumberOptions(features="src/test/resources/features/CreateTask.feature"
+@CucumberOptions(features="src/test/resources/features/LandingPage.feature"
 ,glue = {"steps"}
 ,plugin = {"pretty","html:target/cucumber-html-report.html"}
-,tags = "@testIOS")
+,tags = "@landIOS")
 public class TestRunner extends TestBase {
 }

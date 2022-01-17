@@ -3,6 +3,7 @@ package tests;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -59,6 +60,22 @@ public class TestBase extends AbstractTestNGCucumberTests {
         capabilities.setCapability("showXcodeLog",true);
         capabilities.setCapability("app",
                 System.getProperty("user.dir") + "/apps/DailyCheck.zip");
+        capabilities.setCapability("wdaStartupRetries", "4");
+        capabilities.setCapability("iosInstallPause","8000" );
+        capabilities.setCapability("wdaStartupRetryInterval", "20000");
+        driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
+    }
+
+    public void iOS_setUpRyse() throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "15.2");
+        capabilities.setCapability("deviceName", "iPhone 12");
+        capabilities.setCapability("automationName","XCUITest");
+        capabilities.setCapability("isHeadless",true);
+        capabilities.setCapability("showXcodeLog",true);
+        capabilities.setCapability("app",
+                System.getProperty("user.dir") + "/apps/iOS/Digibank.app");
         capabilities.setCapability("wdaStartupRetries", "4");
         capabilities.setCapability("iosInstallPause","8000" );
         capabilities.setCapability("wdaStartupRetryInterval", "20000");

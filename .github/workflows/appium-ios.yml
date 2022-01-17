@@ -26,7 +26,10 @@ jobs:
         with:
           node-version: '14.18.0'
       - run: |
-          npm install -g appium@v1.22.1
+          npm install -g appium
           appium -v
           appium &>/dev/null &
+      - name: Run Appium IOS Tests
+      - run: |
           mvn clean test -Dcucumber.options="--tags @landIOS"
+

@@ -2,16 +2,19 @@ package tests;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 public class TestBase extends AbstractTestNGCucumberTests {
 
@@ -41,6 +44,11 @@ public class TestBase extends AbstractTestNGCucumberTests {
         return isServerRunning;
     }
 
+    public static void StartAndroidEmulator() throws IOException, InterruptedException {
+        Runtime.getRuntime().exec(System.getProperty("user.dir") + "//src//main//resources//startEmulator.sh");
+        Thread.sleep(6000);
+    }
+
     public static void Android_setUp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformVersion", " 7.1");
@@ -64,6 +72,34 @@ public class TestBase extends AbstractTestNGCucumberTests {
         capabilities.setCapability("iosInstallPause","8000" );
         capabilities.setCapability("wdaStartupRetryInterval", "20000");
         driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
+    }
+
+    public static void Android_setUpRyse() throws IOException, InterruptedException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        StartAndroidEmulator();
+        capabilities.setCapability("platformVersion", " 7.1");
+        capabilities.setCapability("deviceName", "AndroidEmulator");
+        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("app",
+                System.getProperty("user.dir") + "/apps/digibank-0.0.40-debug.apk");
+        driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
+    }
+
+    public static void capabilitiesAndroid(String appName) throws IOException, InterruptedException {
+
+        File appDir = new File("src");
+        File app = new File(appDir, appName);
+        DesiredCapabilities cap = new DesiredCapabilities();
+//        StartAndroidEmulator();
+        cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        cap.setCapability(MobileCapabilityType.DEVICE_NAME, "AndroidEmulator");
+        cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
+
+        cap.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 14);
+        cap.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
     }
 
     public void iOS_setUpRyse() throws MalformedURLException {

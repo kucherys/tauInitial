@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import tests.TestBase;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
@@ -17,11 +18,12 @@ public class LandingSteps extends TestBase {
     LandingPage landingPage;
 
     @Given("Appium server with {string} real application is running")
-    public void setUpRyse(String appType) throws MalformedURLException {
+    public void setUpRyse(String appType) throws IOException, InterruptedException {
         System.out.println(appType + " TESTS RUNNING IN CUCUMBER");
 //        startServer();
         if (appType.equals("Android")) {
-            Android_setUp();
+//            Android_setUpRyse();
+            capabilitiesAndroid("digibank-0.0.40-debug.apk");
         } else if (appType.equals("iOS")) {
             iOS_setUpRyse();
         }

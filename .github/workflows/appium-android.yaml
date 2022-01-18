@@ -6,7 +6,10 @@ name: Java CI with Maven
 
 on:
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - cucumberRun3
+      - exp
 
 jobs:
   build:

@@ -2,10 +2,8 @@ package tests;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
-import io.appium.java_client.remote.AutomationName;
-import io.appium.java_client.remote.IOSMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
@@ -46,14 +44,56 @@ public class TestBase extends AbstractTestNGCucumberTests {
         return isServerRunning;
     }
 
-    public static void Android_setUp() throws MalformedURLException {
+    public static void StartAndroidEmulator() throws IOException, InterruptedException {
+        Runtime.getRuntime().exec(System.getProperty("user.dir") + "//src//main//resources//startEmulator.sh");
+        Thread.sleep(6000);
+    }
+
+    public static void Android_setUp() throws IOException, InterruptedException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
+        StartAndroidEmulator();
         capabilities.setCapability("platformVersion", " 7.1");
-        capabilities.setCapability("deviceName", "Android Emulator");
+        capabilities.setCapability("deviceName", "AndroidEmulator");
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("app",
                 System.getProperty("user.dir") + "/apps/ToDo.apk");
         driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
+    }
+
+    public static void Android_setUpModified() throws IOException, InterruptedException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        StartAndroidEmulator();
+
+//        capabilities.setCapability("platformVersion", " 7.1");
+//        capabilities.setCapability("deviceName", "AndroidEmulator");
+//        capabilities.setCapability("platformName", "Android");
+
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "AndroidEmulator");
+        capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
+
+        capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 14);
+
+        capabilities.setCapability("app",
+                System.getProperty("user.dir") + "/apps/ToDo.apk");
+        driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
+    }
+
+    public static void Android_setUpRyse(String appName) throws IOException, InterruptedException {
+
+        File appDir = new File("src");
+        File app = new File(appDir, appName);
+        DesiredCapabilities cap = new DesiredCapabilities();
+        StartAndroidEmulator();
+        cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        cap.setCapability(MobileCapabilityType.DEVICE_NAME, "AndroidEmulator");
+        cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
+
+        cap.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 14);
+        cap.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
     }
 
     public void iOS_setUp() throws MalformedURLException {
@@ -75,39 +115,18 @@ public class TestBase extends AbstractTestNGCucumberTests {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "15.2");
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 12");
+        capabilities.setCapability("deviceName", "iPhone 12");
         capabilities.setCapability("automationName","XCUITest");
         capabilities.setCapability("isHeadless",true);
         capabilities.setCapability("showXcodeLog",true);
-//        capabilities.setCapability("app",
-//                System.getProperty("user.dir") + "/apps/iOSApp/Digibank.app");
         capabilities.setCapability("app",
-                System.getProperty("user.dir") + "/apps/DailyCheck.zip");
+                System.getProperty("user.dir") + "/apps/iOS/Digibank.app");
         capabilities.setCapability("wdaStartupRetries", "4");
         capabilities.setCapability("iosInstallPause","8000" );
         capabilities.setCapability("wdaStartupRetryInterval", "20000");
+        System.out.println("BEFORE SIMULATOR STARTED");
         driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
-    }
-
-    public void iOS_setUpDigibank () throws IOException, InterruptedException {
-        DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability("platformName", "iOS");
-        cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "15.2");
-//        cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "14.3");
-        cap.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 12");
-        cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
-        cap.setCapability("isHeadless",true);
-        cap.setCapability(IOSMobileCapabilityType.LAUNCH_TIMEOUT, 500000);
-        cap.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 14);
-//        cap.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-        cap.setCapability("app",
-                System.getProperty("user.dir") + "/apps/iOSApp/Digibank.app");
-        cap.setCapability("wdaStartupRetries", "4");
-        cap.setCapability("iosInstallPause","8000" );
-        cap.setCapability("wdaStartupRetryInterval", "20000");
-        driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), cap);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+        System.out.println("AFTER SIMULATOR STARTED");
     }
 
     public static void tearDown() {

@@ -1,5 +1,4 @@
 runner/TestRunner.class
 steps/CreateNewTaskSteps.class
-steps/CreateNewTaskWithDataSteps.class
 steps/LandingSteps.class
 tests/TestBase.class

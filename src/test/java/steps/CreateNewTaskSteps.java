@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import tests.TestBase;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 public class CreateNewTaskSteps extends TestBase {
@@ -16,11 +17,12 @@ public class CreateNewTaskSteps extends TestBase {
 
 
     @Given("Appium server with {string} application is running")
-    public void setUp(String appType) throws MalformedURLException {
+    public void setUp(String appType) throws IOException, InterruptedException {
         System.out.println(appType + " TESTS RUNNING IN CUCUMBER");
-//        startServer();
+//            startServer();
         if (appType.equals("Android")) {
-            Android_setUp();
+//            Android_setUp();
+            Android_setUpModified();
         } else if (appType.equals("iOS")) {
             iOS_setUp();
         }
@@ -60,13 +62,11 @@ public class CreateNewTaskSteps extends TestBase {
         driver.hideKeyboard();
         tearDown();
         System.out.println("STOP APPIUM SERVER INITIAL STEPS CLASS");
-//        service.stop();
     }
 
-
-//    @After
-//    public void stopAppiumServer(){
-//        System.out.println("Stop appium server form INITIAL STEPS CLASS");
+    @After
+    public void stopAppiumServer(){
+        System.out.println("Stop appium server form INITIAL STEPS CLASS");
 //        service.stop();
-//    }
+    }
 }

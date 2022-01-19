@@ -20,16 +20,14 @@ public class LandingSteps extends TestBase {
     @Given("Appium server with {string} real application is running")
     public void setUpRyse(String appType) throws IOException, InterruptedException {
         System.out.println(appType + " TESTS RUNNING IN CUCUMBER");
-//        startServer();
+        startServer();
         if (appType.equals("Android")) {
-//            Android_setUpRyse();
-            capabilitiesAndroid("digibank-0.0.40-debug.apk");
+            Android_setUpRyse("digibank-0.0.40-debug.apk");
         } else if (appType.equals("iOS")) {
             iOS_setUpRyse();
         }
         System.out.println(appType + " EMULATOR STARTED");
     }
-
 
     @When("I print login button name")
     public void printButtonName() {
@@ -55,6 +53,6 @@ public class LandingSteps extends TestBase {
     @After
     public void stopAppiumServer(){
         System.out.println("Stop appium server form INITIAL STEPS CLASS");
-//        service.stop();
+        service.stop();
     }
 }

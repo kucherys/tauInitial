@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import tests.TestBase;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 public class CreateNewTaskWithData extends TestBase {
@@ -14,7 +15,7 @@ public class CreateNewTaskWithData extends TestBase {
     TasksListPage tasksListPage;
 
     @Given("Click add new Task")
-    public void clickAddNewTask() throws MalformedURLException {
+    public void clickAddNewTask() throws IOException, InterruptedException {
         Android_setUp();
         tasksListPage = new TasksListPage(driver);
         createTaskPage = new CreateTaskPage(driver);

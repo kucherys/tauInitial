@@ -1,10 +1,20 @@
 Feature: Create New Task
 
   @testIOS
-  Scenario: The user can add new task again
+  Scenario: The user can add new task again for iOS
     Given Appium server with "iOS" application is running
     Given Click Add new Task
-    Given Print task number "EXPEREMENTAL app WITH ADDED CAPABILITIES"
+    Given Print task number "iOS EXP app WITH ADDED CAPABILITIES"
+    Given Enter TaskName
+    Given Enter TaskDesc
+    When Click Save
+    Then Task added successfully
+
+  @testAndroid
+  Scenario: The user can add new task again for Android
+    Given Appium server with "Android" application is running
+    Given Click Add new Task
+    Given Print task number "ANDROID EXP app WITH ADDED CAPABILITIES"
     Given Enter TaskName
     Given Enter TaskDesc
     When Click Save

@@ -49,14 +49,51 @@ public class TestBase extends AbstractTestNGCucumberTests {
         Thread.sleep(6000);
     }
 
-    public static void Android_setUp() throws MalformedURLException {
+    public static void Android_setUp() throws IOException, InterruptedException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
+        StartAndroidEmulator();
         capabilities.setCapability("platformVersion", " 7.1");
-        capabilities.setCapability("deviceName", "Android Emulator");
+        capabilities.setCapability("deviceName", "AndroidEmulator");
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("app",
                 System.getProperty("user.dir") + "/apps/ToDo.apk");
         driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
+    }
+
+    public static void Android_setUpModified() throws IOException, InterruptedException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        StartAndroidEmulator();
+
+//        capabilities.setCapability("platformVersion", " 7.1");
+//        capabilities.setCapability("deviceName", "AndroidEmulator");
+//        capabilities.setCapability("platformName", "Android");
+
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "AndroidEmulator");
+        capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
+
+        capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 14);
+
+        capabilities.setCapability("app",
+                System.getProperty("user.dir") + "/apps/ToDo.apk");
+        driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
+    }
+
+    public static void Android_setUpRyse(String appName) throws IOException, InterruptedException {
+
+        File appDir = new File("src");
+        File app = new File(appDir, appName);
+        DesiredCapabilities cap = new DesiredCapabilities();
+        StartAndroidEmulator();
+        cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        cap.setCapability(MobileCapabilityType.DEVICE_NAME, "AndroidEmulator");
+        cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
+
+        cap.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 14);
+        cap.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
     }
 
     public void iOS_setUp() throws MalformedURLException {
@@ -72,34 +109,6 @@ public class TestBase extends AbstractTestNGCucumberTests {
         capabilities.setCapability("iosInstallPause","8000" );
         capabilities.setCapability("wdaStartupRetryInterval", "20000");
         driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
-    }
-
-    public static void Android_setUpRyse() throws IOException, InterruptedException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        StartAndroidEmulator();
-        capabilities.setCapability("platformVersion", " 7.1");
-        capabilities.setCapability("deviceName", "AndroidEmulator");
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("app",
-                System.getProperty("user.dir") + "/apps/digibank-0.0.40-debug.apk");
-        driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
-    }
-
-    public static void capabilitiesAndroid(String appName) throws IOException, InterruptedException {
-
-        File appDir = new File("src");
-        File app = new File(appDir, appName);
-        DesiredCapabilities cap = new DesiredCapabilities();
-//        StartAndroidEmulator();
-        cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-        cap.setCapability(MobileCapabilityType.DEVICE_NAME, "AndroidEmulator");
-        cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
-
-        cap.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 14);
-        cap.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
     }
 
     public void iOS_setUpRyse() throws MalformedURLException {

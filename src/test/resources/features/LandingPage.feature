@@ -14,4 +14,4 @@ Feature: Check landing page
     Given Appium server with "Android" real application is running
     When I print login button name
     And I print SignIn button name
-    Then I confirm tests completed with result "RYSE APP LANDING Android TEST PASSED"
+    Then I confirm tests completed with result "REAL Android APP TEST PASSED SUCCESS"

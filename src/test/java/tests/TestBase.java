@@ -63,11 +63,6 @@ public class TestBase extends AbstractTestNGCucumberTests {
     public static void Android_setUpModified() throws IOException, InterruptedException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 //        StartAndroidEmulator();
-
-//        capabilities.setCapability("platformVersion", " 7.1");
-//        capabilities.setCapability("deviceName", "AndroidEmulator");
-//        capabilities.setCapability("platformName", "Android");
-
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "AndroidEmulator");
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
@@ -84,7 +79,7 @@ public class TestBase extends AbstractTestNGCucumberTests {
         File appDir = new File("src");
         File app = new File(appDir, appName);
         DesiredCapabilities cap = new DesiredCapabilities();
-        StartAndroidEmulator();
+//        StartAndroidEmulator();
         cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         cap.setCapability(MobileCapabilityType.DEVICE_NAME, "AndroidEmulator");
         cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");

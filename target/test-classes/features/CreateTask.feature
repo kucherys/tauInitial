@@ -14,7 +14,7 @@ Feature: Create New Task
   Scenario: The user can add new task again for Android
     Given Appium server with "Android" application is running
     Given Click Add new Task
-    Given Print task number "ANDROID EXP app WITH ADDED CAPABILITIES"
+    Given Print task number "ANDROID EXP app WITH ADDED CAPABILITIES new RUN"
     Given Enter TaskName
     Given Enter TaskDesc
     When Click Save
@@ -32,5 +32,5 @@ Feature: Create New Task
     Given Appium server with "Android" real application is running
     When I print login button name
     And I print SignIn button name
-    Then I confirm tests completed with result "LANDING Android TEST PASSED"
+    Then I confirm tests completed with result "RYSE APP LANDING Android TEST PASSED"
 

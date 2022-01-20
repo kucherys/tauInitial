@@ -1,6 +1,5 @@
-PageObjects/LaunchPage.class
+PageObjects/o1/LandingPage.class
 PageObjects/PageBase.class
-PageObjects/TasksListPage.class
-PageObjects/LandingPage.class
 PageObjects/CreateTaskPage.class
+PageObjects/TasksListPage.class
 utils/JsonReader.class

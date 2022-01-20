@@ -1,11 +1,15 @@
 package steps;
 
-import PageObjects.LandingPage;
+import PageObjects.o1.LandingPage;
 import PageObjects.TasksListPage;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.testng.Assert;
 import tests.TestBase;
 
 import java.io.IOException;
@@ -22,11 +26,27 @@ public class LandingSteps extends TestBase {
         System.out.println(appType + " TESTS RUNNING IN CUCUMBER");
 //        startServer();
         if (appType.equals("Android")) {
-            Android_setUpRyse("digibank-0.0.40-debug.apk");
+            Android_setUpRyse("digibank-0.0.119-googleDebug.apk");
         } else if (appType.equals("iOS")) {
             iOS_setUpRyse();
         }
         System.out.println(appType + " EMULATOR STARTED");
+    }
+
+    @When("I verify landing page is loaded")
+    public void verifyLandingPageLoaded() {
+        landingPage = new LandingPage(driver);
+        Assert.assertTrue(landingPage.isLoaded());
+    }
+
+    @Then("I verify elements on landing page")
+    public void verifyElementsLandingDataPage(DataTable table) {
+        List<Map<String, String>> rows = table.asMaps(String.class, String.class);
+            for (Map<String, String> row : rows) {
+                landingPage.verifyLogInButton(row.get("logInButton"));
+                landingPage.verifyWelcomeLabel(row.get("logoLabel"));
+                landingPage.verifySignUpButton(row.get("signUpButton"));
+            }
     }
 
     @When("I print login button name")
@@ -48,7 +68,6 @@ public class LandingSteps extends TestBase {
         System.out.println("CUCUMBER TESTS PASSED WITH RESULT: " + result);
 
     }
-
 
     @After
     public void stopAppiumServer(){

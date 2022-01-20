@@ -75,7 +75,6 @@ public class TestBase extends AbstractTestNGCucumberTests {
     }
 
     public static void Android_setUpRyse(String appName) throws IOException, InterruptedException {
-
         File appDir = new File("src");
         File app = new File(appDir, appName);
         DesiredCapabilities cap = new DesiredCapabilities();
@@ -83,7 +82,7 @@ public class TestBase extends AbstractTestNGCucumberTests {
         cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         cap.setCapability(MobileCapabilityType.DEVICE_NAME, "AndroidEmulator");
         cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
-
+        cap.setCapability("adbExecTimeout", 50000);
         cap.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 14);
         cap.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
         driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);

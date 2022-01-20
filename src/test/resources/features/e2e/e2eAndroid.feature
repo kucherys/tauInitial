@@ -7,23 +7,30 @@ Feature: Check e2e Onboarding scenario for Android
     Then I verify elements on landing page
       | logInButton | logoLabel  | signUpButton    |
       | Log In      | Welcome to | I'm new to Ryse |
-
+    And I log in to product carousel page
+    And I verify product carousel page is loaded
+    Then I verify elements on product carousel page
+      | pageNumber | logoText                     | instructionText                                  | openBankAccountButton | eligibilityLabel |
+      | 2          | Achieve your financial goal  | Make your money work harder with our Savings Pot | Open bank account     | Am I eligible?   |
+      | 3          | Discover exciting new deals  | Enjoy exclusive offers from our partners         | Open bank account     | Am I eligible?   |
+      | 4          | Financing at your fingertips | Apply online hassle-free                         | Open bank account     | Am I eligible?   |
+      | 1          | Manage your money on the go  | Stay in control with our Savings Account-i       | Open bank account     | Am I eligible?   |
 
   @e2e
   Scenario: Verify onboarding flow happy path
     Given Appium server with "Android" real application is running
     When I verify landing page is loaded
-    Then I verify elements on landing page with values
-      | ButtonLogIn | ButtonSignUp |
-      | Log in      | Sign Up      |
+    Then I verify elements on landing page
+      | logInButton | logoLabel  | signUpButton    |
+      | Log In      | Welcome to | I'm new to Ryse |
     And I log in to product carousel page
     And I verify product carousel page is loaded
     Then I verify elements on product carousel page
-      | pageNumber | logoText                         | instructionText                                    | openBankAccountButton | eligibilityLabel |
-      | 2          | Achive your financial goal       | Grow your wealth with our new Savings Pot          | Open bank account     | Am I eligible?   |
-      | 3          | Discover Al-Rajhi exlusive deals | Enjoy deals and offer from our exclusive partners  | Open bank account     | Am I eligible?   |
-      | 4          | Financing in seconds             | Enjoy hassle free online application for financing | Open bank account     | Am I eligible?   |
-      | 1          | We manage your finances          | Be worry free with our Savings Account-i           | Open bank account     | Am I eligible?   |
+      | pageNumber | logoText                     | instructionText                                  | openBankAccountButton | eligibilityLabel |
+      | 2          | Achieve your financial goal  | Make your money work harder with our Savings Pot | Open bank account     | Am I eligible?   |
+      | 3          | Discover exciting new deals  | Enjoy exclusive offers from our partners         | Open bank account     | Am I eligible?   |
+      | 4          | Financing at your fingertips | Apply online hassle-free                         | Open bank account     | Am I eligible?   |
+      | 1          | Manage your money on the go  | Stay in control with our Savings Account-i       | Open bank account     | Am I eligible?   |
     When I verify if I am eligible
     And I verify Eligibility criteria modal is loaded
     Then I verify elements on Eligibility criteria modal

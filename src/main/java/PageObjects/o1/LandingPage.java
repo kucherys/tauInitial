@@ -61,4 +61,9 @@ public class LandingPage extends PageBase {
 
     }
 
+    public ProductCarouselPage logInToProductCarouselPage(AppiumDriver driver){
+        (signInButton).click();
+        return new ProductCarouselPage(driver);
+    }
+
 }

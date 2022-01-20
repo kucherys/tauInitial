@@ -24,7 +24,7 @@ public class LandingSteps extends TestBase {
     @Given("Appium server with {string} real application is running")
     public void setUpRyse(String appType) throws IOException, InterruptedException {
         System.out.println(appType + " TESTS RUNNING IN CUCUMBER");
-        startServer();
+//        startServer();
         if (appType.equals("Android")) {
             Android_setUpRyse("digibank-0.0.119-googleDebug.apk");
         } else if (appType.equals("iOS")) {
@@ -72,6 +72,6 @@ public class LandingSteps extends TestBase {
     @After
     public void stopAppiumServer(){
         System.out.println("Stop appium server form INITIAL STEPS CLASS");
-        service.stop();
+//        service.stop();
     }
 }

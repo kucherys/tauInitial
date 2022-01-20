@@ -75,7 +75,6 @@ public class TestBase extends AbstractTestNGCucumberTests {
     }
 
     public static void Android_setUpRyse(String appName) throws IOException, InterruptedException {
-
         File appDir = new File("src");
         File app = new File(appDir, appName);
         DesiredCapabilities cap = new DesiredCapabilities();

@@ -80,10 +80,10 @@ public class ProductCarouselPage extends PageBase {
         Assert.assertEquals(actualName, expectedName);
     }
 
-//    public EligibilityModalPage openEligibilityModal(){
-//        driver.findElement(eligibleButton).click();
-//        return new EligibilityModalPage(driver);
-//    }
+    public EligibilityModalPage openEligibilityModal(AppiumDriver driver){
+        (eligibleButton).click();
+        return new EligibilityModalPage(driver);
+    }
 
     public ProductCarouselPage spinToCarouselPage(String pageNb, AppiumDriver driver){
         ProductCarouselPage productCarouselPage;

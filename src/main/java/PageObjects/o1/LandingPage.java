@@ -3,11 +3,8 @@ package PageObjects.o1;
 import PageObjects.PageBase;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
-import io.cucumber.java.en.When;
 import junit.framework.Assert;
 import org.openqa.selenium.By;
 

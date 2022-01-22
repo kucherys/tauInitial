@@ -1,9 +1,6 @@
 package steps;
 
 import PageObjects.o1.LandingPage;
-import PageObjects.TasksListPage;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
@@ -13,7 +10,6 @@ import org.testng.Assert;
 import tests.TestBase;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +22,7 @@ public class LandingSteps extends TestBase {
         System.out.println(appType + " TESTS RUNNING IN CUCUMBER");
 //        startServer();
         if (appType.equals("Android")) {
-            Android_setUpRyse("digibank-0.0.119-googleDebug.apk");
+            Android_setUpRyse("digibank-0.0.133-googleDebug.apk");
         } else if (appType.equals("iOS")) {
             iOS_setUpRyse();
         }
@@ -42,11 +38,11 @@ public class LandingSteps extends TestBase {
     @Then("I verify elements on landing page")
     public void verifyElementsLandingDataPage(DataTable table) {
         List<Map<String, String>> rows = table.asMaps(String.class, String.class);
-            for (Map<String, String> row : rows) {
-                landingPage.verifyLogInButton(row.get("logInButton"));
-                landingPage.verifyWelcomeLabel(row.get("logoLabel"));
-                landingPage.verifySignUpButton(row.get("signUpButton"));
-            }
+        for (Map<String, String> row : rows) {
+            landingPage.verifyLogInButton(row.get("logInButton"));
+            landingPage.verifyWelcomeLabel(row.get("logoLabel"));
+            landingPage.verifySignUpButton(row.get("signUpButton"));
+        }
     }
 
     @When("I print login button name")
@@ -70,7 +66,7 @@ public class LandingSteps extends TestBase {
     }
 
     @After
-    public void stopAppiumServer(){
+    public void stopAppiumServer() {
         System.out.println("Stop appium server form INITIAL STEPS CLASS");
 //        service.stop();
     }
